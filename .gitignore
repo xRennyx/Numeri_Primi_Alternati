@@ -1,52 +1,48 @@
-# Prerequisites
-*.d
+#include <stdio.h>
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+int main() 
+{
+    int num; //il numero di primi da stampare
+	int x = 1; //il numero corrente
+	int contatore = 0; //il contatore dei primi trovati
+	int somma = 0; //la somma dei primi
+	
+//Controllo che N sia positivo
+	do
+	{	
+    printf("Inserisci il numero di primi da stampare: ");
+    scanf("%d", &num);
+	}while (num <= 0);
 
-# Linker output
-*.ilk
-*.map
-*.exp
+//Un ciclo while che continua finché non sono stati stampati N numeri primi.
+    while (contatore < num) {
+        int primo = 1; 
 
-# Precompiled Headers
-*.gch
-*.pch
+        x = x + 1; // Incrementa il numero corrente
+        //Un ciclo for che verifica se x è divisibile per qualche valore compreso tra 2 e x - 1.
+        for (int i = 2; i < x; i++) 
+		{
+			//Se x è divisibile per qualche valore in questo intervallo, imposta primo a 0, indicando che x non è un numero primo.
+            if (x % i == 0) 
+			{
+                primo = 0; 
+            }
+        }
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+        if (primo) //è ancora uguale a 1, allora x è un numero primo.
+		{
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+            contatore++;
+            
+            if(contatore%2!=0)
+            {
+            	printf("%d\n", x);
+            	somma = somma + x;
+			}
+        }
+    }
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+    printf("La somma e': %d\n", somma);
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+    return 0;
+}
